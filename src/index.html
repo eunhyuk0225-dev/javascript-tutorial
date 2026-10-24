@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang=ko>
+<head>
+    <meta charset=UTF-8>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <title>PixiJS v8 + Webpack</title>
+    <script src="https://pixijs.download/v8.0.0/pixi.min.js"></script>
+    <style>body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #1099bb
+    }</style>
+
+</head>
+<body>
+<script>
+    (async () => {
+        const app = new PIXI.Application({
+            width: 800,
+            height: 600,
+        });
+
+        await app.init({ background: '#ffffff'});
+        document.body.appendChild(app.canvas);
+
+        const texture = await PIXI.Assets.load('https://pixijs.com/assets/bunny.png');
+
+        const bunny = new PIXI.Sprite(texture);
+
+        app.stage.addChild(bunny);
+
+        bunny.y=100;
+
+
+    }) ()
+
+</script>
+</body>
+</html>
