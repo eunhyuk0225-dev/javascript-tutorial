@@ -2,8 +2,8 @@
 <html lang=ko>
 <head>
     <meta charset=UTF-8>
-    <meta name=viewport content="width=device-width,initial-scale=1">
-    <title>PixiJS v8 + Webpack</title>
+    <meta content="width=device-width,initial-scale=1" name=viewport>
+    <title>갈색 토끼</title>
     <script src="https://pixijs.download/v8.0.0/pixi.min.js"></script>
     <style>body {
         margin: 0;
@@ -21,7 +21,7 @@
             height: 600,
         });
 
-        await app.init({ background: '#ffffff'});
+        await app.init({background: '#ffffff'});
         document.body.appendChild(app.canvas);
 
         const texture = await PIXI.Assets.load('https://pixijs.com/assets/bunny.png');
@@ -30,10 +30,29 @@
 
         app.stage.addChild(bunny);
 
-        bunny.y=100;
+        bunny.y = 100;
+
+        // bunny.x = app.renderer.width - bunny.width
+
+        const rightEdge = app.renderer.width - bunny.width
+
+        console.log("app.renderer.width :", app.renderer.width)
+        console.log("bunny.width :", bunny.width)
+
+        let speed = 2
+        app.ticker.add(() => {
+            bunny.x += speed;
+
+            if (bunny.x > rightEdge) {
+                speed = -2;
+            }
+            if (bunny.x < 0) {
+                speed = 2
+            }
+        })
 
 
-    }) ()
+    })()
 
 </script>
 </body>
